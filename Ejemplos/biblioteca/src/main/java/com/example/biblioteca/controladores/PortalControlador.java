@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class PortalControlador  {
     
-    @GetMapping("/")
+    @GetMapping("/") //mapea na url cuando se agrega una barra
     public String index(){
+        
         return "index.html";
     }
 }
