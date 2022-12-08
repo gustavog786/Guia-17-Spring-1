@@ -1,10 +1,14 @@
 
 package com.example.biblioteca.controladores;
 
+import com.example.biblioteca.entidades.Autor;
+import com.example.biblioteca.entidades.Editorial;
+import com.example.biblioteca.entidades.Libro;
 import com.example.biblioteca.excepciones.MiException;
 import com.example.biblioteca.servicio.AutorServicio;
 import com.example.biblioteca.servicio.EditorialServicio;
 import com.example.biblioteca.servicio.LibroServicio;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +32,12 @@ public class LibroControlador {
     private AutorServicio autorServicio;
     
     @GetMapping("/registrar") //localhost:8080/libro/registrar
-    public String registrar(){
+    public String registrar(ModelMap modelo){
+        List<Autor> autores = autorServicio.listarAutores();
+        List<Editorial> editoriales = editorialServicio.listarEditoriales();
+        
+        modelo.addAttribute("autores", autores);
+        modelo.addAttribute("editoriales", editoriales);  
         
         return "libro_form.html";
     }
@@ -42,11 +51,25 @@ public class LibroControlador {
             libroServicio.crearLibro(isbn, titulo, ejemplares, idAutor, idEditorial); //si todo sale bien retornamos al index
             modelo.put("exito", "El libro fue cargado exitosamente");
         } catch (MiException ex) {
+            List<Autor> autores = autorServicio.listarAutores();
+            List<Editorial> editoriales = editorialServicio.listarEditoriales();
+        
+            modelo.addAttribute("autores", autores);
+            modelo.addAttribute("editoriales", editoriales);
             modelo.put("error", ex.getMessage());
             
             return "libro_form.html";  //volvemoa a cargar el formulario
         }
         
         return "index.html";
+    }
+    
+    @GetMapping("/lista")
+    public String listar(ModelMap modelo){
+    
+         List<Libro> libros = libroServicio.listarLibros();
+         modelo.addAttribute("libros", libros);
+         
+         return "libro_list.html";
     }
 }
