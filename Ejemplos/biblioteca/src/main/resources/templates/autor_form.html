@@ -39,7 +39,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         
-                        <li><a class="dropdown-item" th:href="@{/autor/registrar}">Crear Autor</a></li>
+                        <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" th:href="@{/autor/registrar}">Crear Autor</a></li>
                         <li><hr class="dropdown-divider"></li>
                        
                         <li><a class="dropdown-item" th:href="@{/autor/lista}">Listar Autores</a></li>

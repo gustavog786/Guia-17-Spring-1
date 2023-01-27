@@ -20,7 +20,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                            <li><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/libro/registrar}">Crear Libro</a></li>
+                            <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/libro/registrar}">Crear Libro</a></li>
                             <li><hr class="dropdown-divider"></li>
 
                             <li><a class="dropdown-item" th:href="@{/libro/lista}">Listar Libros</a></li>
@@ -34,7 +34,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                            <li><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/autor/registrar}">Crear Autor</a></li>
+                            <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/autor/registrar}">Crear Autor</a></li>
                             <li><hr class="dropdown-divider"></li>
 
                             <li><a class="dropdown-item" th:href="@{/autor/lista}">Listar Autores</a></li>
@@ -49,7 +49,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                            <li><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/editorial/registrar}">Crear Editorial</a></li>
+                            <li sec:authorize="hasRole('ADMIN')"><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/editorial/registrar}">Crear Editorial</a></li>
                             <li><hr class="dropdown-divider"></li>
 
                             <li><a class="dropdown-item" th:href="@{/editorial/lista}">Listar Editoriales</a></li>
