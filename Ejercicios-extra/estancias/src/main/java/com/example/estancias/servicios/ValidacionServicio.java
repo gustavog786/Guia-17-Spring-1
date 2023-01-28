@@ -104,4 +104,15 @@ public class ValidacionServicio {
             throw new MiException("Las 2 claves deben ser iguales");
         }
     }
+    
+    //Validar Usuarios
+    public void validarAlias(String alias) throws MiException {
+        if (alias.isEmpty() || alias == null) {
+            throw new MiException("El alias no puede estar vacio o ser nulo");
+        }
+    }
+    
+    
+    
+    
 }

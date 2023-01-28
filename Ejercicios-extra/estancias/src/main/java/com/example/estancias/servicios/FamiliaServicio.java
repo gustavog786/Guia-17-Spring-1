@@ -9,6 +9,7 @@ import com.example.estancias.entidades.Casa;
 import com.example.estancias.entidades.Cliente;
 import com.example.estancias.entidades.Estancia;
 import com.example.estancias.entidades.Familia;
+import com.example.estancias.enumeraciones.Rol;
 import com.example.estancias.excepciones.MiException;
 import com.example.estancias.repositorios.FamiliaRepositorio;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,7 +42,8 @@ public class FamiliaServicio {
         //seteo los parametros
         familia.setNombre(nombre);
         familia.setEmail(email);
-        familia.setClave(clave1);
+        familia.setClave(new BCryptPasswordEncoder().encode(clave1));
+        familia.setRol(Rol.USER);
         
         //persisto - guardo en BD
         familiaRepositorio.save(familia);
@@ -57,7 +60,7 @@ public class FamiliaServicio {
         return listaFamilias;
     }
     
-    //Metodo modificar Estancias
+    //Metodo modificar familia
     public void modificarFamilia(String nombre, String email, String clave1, String clave2) throws MiException{
         
         validacionServicio.validarNombre(nombre);
@@ -71,7 +74,8 @@ public class FamiliaServicio {
         familia.setNombre(nombre);
         familia.setEmail(email);
         familia.setClave(clave1);
-        
+        familia.setClave(new BCryptPasswordEncoder().encode(clave1));
+        familia.setRol(Rol.USER);
         //persisto - guardo en BD
         familiaRepositorio.save(familia);
     }

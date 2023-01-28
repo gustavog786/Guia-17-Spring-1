@@ -22,7 +22,7 @@ public class FamiliaController {
     @Autowired
     FamiliaServicio familiaServicio;
     
-    @GetMapping("/")
+    @GetMapping("")
     public String index(){
         return "index_familia.html";
     }
